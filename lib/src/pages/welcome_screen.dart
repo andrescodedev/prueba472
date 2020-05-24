@@ -70,7 +70,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           buttomAccountLogin(
               Colors.white, 
               Color.fromRGBO(232, 139, 31, 1.0),
-              Color.fromRGBO(232, 139, 31, 1.0)
+              Color.fromRGBO(232, 139, 31, 1.0),
+              'Crear Cuenta',
           ),
           SizedBox(
             height: 30.0,
@@ -79,8 +80,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           SizedBox(
             height: 30.0,
           ),
-          buttomAccountLogin(Color.fromRGBO(232, 139, 31, 1.0), Colors.white,
-              Color.fromRGBO(232, 139, 31, 1.0)),
+          buttomAccountLogin(
+            Color.fromRGBO(232, 139, 31, 1.0), 
+            Colors.white,
+            Color.fromRGBO(232, 139, 31, 1.0),
+            'Iniciar Sesión',
+          ),
+              
         ],
       ),
     );
@@ -97,7 +103,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 
-  Widget buttomAccountLogin(Color textColor, Color buttomColor,Color borderColor) {
+  Widget buttomAccountLogin(Color textColor, Color buttomColor,Color borderColor,String textButtom) {
     return RaisedButton(
       color: buttomColor,
       padding: EdgeInsets.symmetric(horizontal: 60.0, vertical: 10.0),
@@ -108,13 +114,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ),
       ),
       child: Text(
-        'Crear Cuenta',
+        textButtom,
         style: TextStyle(
           fontSize: 17.0,
           color: textColor,
         ),
       ),
-      onPressed: () {},
+      onPressed: () {
+        if(textButtom == 'Iniciar Sesión'){
+          Navigator.pushNamed(context, '/login');
+        }
+      },
     );
   }
 
