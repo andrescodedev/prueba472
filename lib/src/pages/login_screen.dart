@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _dataSubmit() {
     FocusScope.of(context).unfocus();
     final bool isValid = _formKey.currentState.validate();
-    if(isValid){
+    if (isValid) {
       print('Email: $_email , password: $_password');
     }
   }
@@ -48,14 +48,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final MediaQueryData media = MediaQuery.of(context);
+    final double size = media.size.height;
+    final double paddingTop = media.padding.top;
+    final double paddingBottom = media.padding.bottom;
+
     return Scaffold(
       body: SafeArea(
-        child: baseContainer(),
+        child: baseContainer(size, paddingTop, paddingBottom),
       ),
     );
   }
 
-  Widget baseContainer() {
+  Widget baseContainer(double size, double paddingTop, double paddingBottom) {
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -63,31 +68,33 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Container(
         width: double.infinity,
         height: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 30.0),
         child: ListView(
           children: <Widget>[
-            Column(
-              children: <Widget>[
-                arrowLeft(context),
-                imageLogin(),
-                SizedBox(
-                  height: 30.0,
-                ),
-                textLogin(
-                  'Iniciar Sesión',
-                  30.0,
-                  FontWeight.bold,
-                  Color.fromRGBO(116, 70, 16, 1.0),
-                ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                validateForm(),
-                SizedBox(
-                  height: 30.0,
-                ),
-                buttomLogin(),
-              ],
+            Container(
+              //height: size - paddingTop - paddingBottom,
+              child: Column(
+                children: <Widget>[
+                  arrowLeft(context),
+                  imageLogin(),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  textLogin(
+                    'Iniciar Sesión',
+                    30.0,
+                    FontWeight.bold,
+                    Color.fromRGBO(116, 70, 16, 1.0),
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  validateForm(),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  buttomLogin(),
+                ],
+              ),
             ),
           ],
         ),
@@ -97,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget validateForm() {
     return ConstrainedBox(
-      constraints: BoxConstraints(minWidth: 200.0, maxWidth: 300.0),
+      constraints: BoxConstraints(minWidth: 200.0, maxWidth: 330.0),
       child: Form(
         key: _formKey,
         child: Column(
@@ -121,6 +128,13 @@ class _LoginScreenState extends State<LoginScreen> {
       decoration: InputDecoration(
         hintText: 'example@domain.com',
         labelText: 'Email',
+        prefixIcon: Icon(
+          Icons.email,
+          color: Color.fromRGBO(232, 139, 31, 1.0),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
       ),
       onFieldSubmitted: (String text) {
         _focusNodePassword.nextFocus();
@@ -138,6 +152,13 @@ class _LoginScreenState extends State<LoginScreen> {
       decoration: InputDecoration(
         hintText: '*******',
         labelText: 'Password',
+        prefixIcon: Icon(
+          Icons.vpn_key,
+          color: Color.fromRGBO(232, 139, 31, 1.0),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
       ),
       onFieldSubmitted: (String text) {
         _dataSubmit();
@@ -180,9 +201,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget buttomLogin() {
     return RaisedButton(
-      child: textLogin('Iniciar sesión', 17.0, null, Colors.white),
+      child: textLogin('INGRESAR', 20.0, null, Colors.white),
       color: Color.fromRGBO(232, 139, 31, 1.0),
-      padding: EdgeInsets.symmetric(horizontal: 60.0, vertical: 10.0),
+      padding: EdgeInsets.symmetric(horizontal: 120.0, vertical: 15.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
       ),
