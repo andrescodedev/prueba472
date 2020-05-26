@@ -30,6 +30,8 @@ class _SplashScreenState extends State<SplashScreen> {
               Color.fromRGBO(232, 139, 31, 1.0),
               Color.fromRGBO(116, 70, 16, 1.0),
             ],
+            begin: Alignment(1.0,1.0),
+            end: Alignment(1.0,1.0),
           ),
         ),
         child: Column(
@@ -53,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Text(
       'From Faoba Technologies',
       style: TextStyle(
-        color: Color.fromRGBO(116, 70, 16, 1.0),
+        color: Color.fromRGBO(232, 139, 31, 1.0),
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),
